@@ -1,1 +1,1 @@
-## Cli app with algoritms
+## CLI app with algoritms
