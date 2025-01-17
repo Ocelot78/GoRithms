@@ -29,6 +29,16 @@ func isPrime(a int) bool{
 	}
 	return true
 }
+func palidrome(text string) bool{
+	temp := []rune(text)
+	for i, j := 0, len(temp)-1; i < j; i, j = i+1, j-1 {
+		temp[i],temp[j] = temp[j],temp[i]
+	}
+	if text == string(temp){
+		return true
+	}
+	return false
+}
 func bubble(array []int) []int {
 	n := len(array)
 	for i := 0; i<n;i++{
@@ -47,8 +57,9 @@ func main(){
 	var option int
 	var a int
 	var b int
+	var word string
 	for {
-		fmt.Print("-------------------------\nChose an algorithm \n1.Greatest common divisor\n2.Least common multiple\n3.Prime number\n4.Bubble sort\nChoose option: ")
+		fmt.Print("-------------------------\nChose an algorithm \n1.Greatest common divisor\n2.Least common multiple\n3.Prime number\n4.Is a palindrome\n5.Bubble sort\nChoose option: ")
 		fmt.Scan(&option)
 		switch option {
 		case 1:
@@ -72,6 +83,14 @@ func main(){
 				fmt.Print("Number is not prime\n")
 			}
 		case 4:
+			fmt.Print("Type a word: ")
+			fmt.Scan(&word)
+			if (palidrome(word)) {
+				fmt.Print("Word is a palindrome")
+			}else {
+				fmt.Print("Word is not a palindrome")
+			}
+		case 5:
 			fmt.Print("Create an array \n How long array should be = ")
 			fmt.Scan(&a)
 			array := []int{}
