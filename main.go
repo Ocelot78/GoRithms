@@ -39,11 +39,26 @@ func palidrome(text string) bool{
 	}
 	return false
 }
+func selection(array []int) []int {
+	n := len(array)
+
+	for i := 0; i < len(array);i++{
+		index := i 
+		for j := i + 1;j<n;j++{
+			if array[j]<array[index]{
+				index = j
+			}
+		}
+		temp := array[index]
+		array[index] = array[i]
+		array[i] = temp
+	}
+	return array
+}
 func bubble(array []int) []int {
 	n := len(array)
 	for i := 0; i<n;i++{
 		for j := 1; j<n-i;j++{
-			fmt.Print(j)
 			if array[j-1] > array[j] {
 				temp := array[j-1]
 				array[j-1] = array[j]
@@ -59,7 +74,7 @@ func main(){
 	var b int
 	var word string
 	for {
-		fmt.Print("-------------------------\nChose an algorithm \n1.Greatest common divisor\n2.Least common multiple\n3.Prime number\n4.Is a palindrome\n5.Bubble sort\nChoose option: ")
+		fmt.Print("-------------------------\nChose an algorithm \n1.Greatest common divisor\n2.Least common multiple\n3.Prime number\n4.Is a palindrome\n5.Bubble sort\n6.Selection sort\nChoose option: ")
 		fmt.Scan(&option)
 		switch option {
 		case 1:
@@ -101,6 +116,17 @@ func main(){
 				array = append(array, b)
 			}
 			fmt.Print("Sorted array = ", bubble(array),"\n")
+		case 6:
+			fmt.Print("Create an array \n How long array should be = ")
+			fmt.Scan(&a)
+			array := []int{}
+			b = 0
+			for i := 0; i < a;i++ {
+				fmt.Print("\nAdd a number = ")
+				fmt.Scan(&b)
+				array = append(array, b)
+			}
+			fmt.Print("Sorted array = ", selection(array),"\n")
 		default:
 			fmt.Print("Option does not exists\n")
 		}
