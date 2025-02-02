@@ -41,7 +41,6 @@ func palidrome(text string) bool{
 }
 func selection(array []int) []int {
 	n := len(array)
-
 	for i := 0; i < len(array);i++{
 		index := i 
 		for j := i + 1;j<n;j++{
@@ -57,7 +56,7 @@ func selection(array []int) []int {
 }
 func bubble(array []int) []int {
 	n := len(array)
-	for i := 0; i<n;i++{
+	for i := 0; i<n;i++{	
 		for j := 1; j<n-i;j++{
 			if array[j-1] > array[j] {
 				temp := array[j-1]
@@ -68,13 +67,31 @@ func bubble(array []int) []int {
 	}
 	return array
 }
+func binarySearch(array []int, n int) {
+	left := 0
+	right := len(array)-1
+	for left <= right {
+		middle := int((left+right)/2)
+		if array[middle] > n {
+			right = middle - 1
+		}else if array[middle] < n{
+			left = middle + 1
+		}else{
+			fmt.Print("Number Found on ", middle,"\n")
+			return
+		}
+	}
+	fmt.Print("Number not Found\n")
+	return
+}
+
 func main(){
 	var option int
 	var a int
 	var b int
 	var word string
 	for {
-		fmt.Print("-------------------------\nChose an algorithm \n1.Greatest common divisor\n2.Least common multiple\n3.Prime number\n4.Is a palindrome\n5.Bubble sort\n6.Selection sort\nChoose option: ")
+		fmt.Print("-------------------------\nChose an algorithm \n1.Greatest common divisor\n2.Least common multiple\n3.Prime number\n4.Is a palindrome\n5.Bubble sort\n6.Selection sort\n7.Binary search\nChoose option: ")
 		fmt.Scan(&option)
 		switch option {
 		case 1:
@@ -110,10 +127,15 @@ func main(){
 			fmt.Scan(&a)
 			array := []int{}
 			b = 0
-			for i := 0; i < a;i++ {
+			for i := 1; i <= a;i++ {
 				fmt.Print("\nAdd a number = ")
 				fmt.Scan(&b)
-				array = append(array, b)
+				if b == int(b){
+					array = append(array, b)
+				}else{
+					fmt.Print("Input must be a number");
+					i--
+				}
 			}
 			fmt.Print("Sorted array = ", bubble(array),"\n")
 		case 6:
@@ -121,12 +143,37 @@ func main(){
 			fmt.Scan(&a)
 			array := []int{}
 			b = 0
-			for i := 0; i < a;i++ {
+			for i := 1; i <= a;i++ {
 				fmt.Print("\nAdd a number = ")
 				fmt.Scan(&b)
-				array = append(array, b)
+				if b == int(b){
+					array = append(array, b)
+				}else{
+					fmt.Print("Input must be a number");
+					i--
+				}
+				
 			}
 			fmt.Print("Sorted array = ", selection(array),"\n")
+		case 7:
+			fmt.Print("Create an array \n How long array should be = ")
+			fmt.Scan(&a)
+			array := []int{}
+			b = 0
+			for i := 0; i <= a;i++ {
+				fmt.Print("\nAdd a number = ")
+				fmt.Scan(&b)
+				if b == int(b){
+					array = append(array, b)
+				}else{
+					fmt.Print("Input must be a number");
+					i--
+				}
+				
+			}
+			fmt.Print("Number you want to search for: ")
+			fmt.Scan(&b)
+			binarySearch(array,b)
 		default:
 			fmt.Print("Option does not exists\n")
 		}
