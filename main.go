@@ -84,6 +84,14 @@ func binarySearch(array []int, n int) {
 	fmt.Print("Number not Found\n")
 	return
 }
+func linearSearch(array []int, n int) {
+	for i := 0; i <= len(array); i++ {
+		if array[i] == n {
+			fmt.Print("Number Found on ", i,"\n")
+			return
+		}
+	}
+}
 
 func main(){
 	var option int
@@ -91,7 +99,7 @@ func main(){
 	var b int
 	var word string
 	for {
-		fmt.Print("-------------------------\nChose an algorithm \n1.Greatest common divisor\n2.Least common multiple\n3.Prime number\n4.Is a palindrome\n5.Bubble sort\n6.Selection sort\n7.Binary search\nChoose option: ")
+		fmt.Print("-------------------------\nChose an algorithm \n1.Greatest common divisor\n2.Least common multiple\n3.Prime number\n4.Is a palindrome\n5.Bubble sort\n6.Selection sort\n7.Binary search\n8.Linear search\nChoose option: ")
 		fmt.Scan(&option)
 		switch option {
 		case 1:
@@ -174,6 +182,26 @@ func main(){
 			fmt.Print("Number you want to search for: ")
 			fmt.Scan(&b)
 			binarySearch(array,b)
+		case 8:
+			fmt.Print("Create an array \n How long array should be = ")
+			fmt.Scan(&a)
+			array := []int{}
+			b = 0
+			for i := 0; i <= a;i++ {
+				fmt.Print("\nAdd a number = ")
+				fmt.Scan(&b)
+				if b == int(b){
+					array = append(array, b)
+				}else{
+					fmt.Print("Input must be a number");
+					i--
+				}
+				
+			}
+			b = 0
+			fmt.Print("Number you want to search for: ")
+			fmt.Scan(&b)
+			linearSearch(array,b)
 		default:
 			fmt.Print("Option does not exists\n")
 		}
